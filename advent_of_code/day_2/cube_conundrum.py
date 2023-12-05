@@ -24,6 +24,26 @@ def cube_conundrum(games: list[int, list[list[tuple[int, Literal["blue"] | Liter
 
     return sum([g[0] for g in games if is_valid_game(g[1])])
 
+def cube_conundrum_power(games: list[int, list[list[tuple[int, Literal["blue"] | Literal["red"] | Literal["green"]]]]]) -> int:
+    def game_power(game: list[list[tuple[int, Literal["blue"] | Literal["red"] | Literal["green"]]]]) -> bool:
+        min_blue = 0
+        min_red = 0
+        min_green = 0
+
+        for batch in game:
+            blue_drawn = sum([d[0] for d in batch if d[1] == "blue"])
+            min_blue = max(min_blue, blue_drawn)
+
+            red_drawn = sum([d[0] for d in batch if d[1] == "red"])
+            min_red = max(min_red, red_drawn)
+            
+            green_drawn = sum([d[0] for d in batch if d[1] == "green"])
+            min_green = max(min_green, green_drawn)
+        
+        return min_blue * min_red * min_green
+
+    return sum([game_power(g[1]) for g in games])
+
 
 def runner(input: Path) -> int:
     games: list[int, list[list[tuple[int, Literal["blue"] | Literal["red"] | Literal["green"]]]]] = []
