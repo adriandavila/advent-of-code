@@ -269,4 +269,7 @@ def test_too_far():
 
     assert(gear_ratios([_.strip() for _ in case_9])) == 0
 
+def test_gear_ratio():
+    assert runner(test_dir / "sample.txt") == 467835
+
 print(runner(test_dir / "input.txt"))

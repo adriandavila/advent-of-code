@@ -1,5 +1,6 @@
 from pathlib import Path
 from collections import namedtuple
+from math import prod
 
 SchematicNumber = namedtuple("SchematicNumber", ["line_idx", "start_idx", "end_idx"])
 
@@ -66,8 +67,56 @@ def gear_ratios(schematic: list[str]) -> int:
     for num in number_indexes:
         if is_adjacent_to_symbol(num):
             acc += int(schematic[num.line_idx][num.start_idx:num.end_idx])
+
+    """
+    # PART 2 SOLUTION
+    cache = [[(0, []) for _ in range(len(schematic[0]))] for _ in range(len(schematic))]
+
+    def adjacent_symbol(num: SchematicNumber) -> tuple[int] | None:
+        nonlocal schematic
+
+        # Check above
+        for x in range(num.start_idx - 1, num.end_idx + 1):
+            if is_in_range(x, num.line_idx - 1):
+                ch = schematic[num.line_idx - 1][x]
+                if ch == "*":
+                    return (x, num.line_idx - 1)
+
+        # Check below
+        for x in range(num.start_idx - 1, num.end_idx + 1):
+            if is_in_range(x, num.line_idx + 1):
+                ch = schematic[num.line_idx + 1][x]
+                if ch == "*":
+                    return (x, num.line_idx + 1)
+
+        # Check left
+        if is_in_range(num.start_idx - 1, num.line_idx):
+            ch: chr = schematic[num.line_idx][num.start_idx - 1]
+            if ch == "*":
+                return (num.start_idx - 1, num.line_idx) 
+
+        # Check right
+        if is_in_range(num.end_idx, num.line_idx):
+            ch = schematic[num.line_idx][num.end_idx] 
+            if ch == "*":
+                return (num.end_idx , num.line_idx)
         
-    return acc
+        return None
+    
+    for num in number_indexes:
+        if adjacent_symbol(num) is not None:
+            x, y = adjacent_symbol(num)
+            cache[y][x] = (cache[y][x][0] + 1, cache[y][x][1] + [int(schematic[num.line_idx][num.start_idx:num.end_idx])])
+
+    partial_sum: int = 0
+    for y in range(len(cache)):
+        for x in range(len(cache[0])):
+            if cache[y][x][0] == 2:
+                partial_sum += prod(cache[y][x][1])
+
+        
+    return partial_sum
+    """
 
 
 
