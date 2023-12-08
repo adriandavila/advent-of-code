@@ -22,10 +22,6 @@ def gear_ratios(schematic: list[str]) -> int:
         
         if l < r:
             number_indexes.append(SchematicNumber(line_idx, l, r))
-    
-    with open("temporary_result.txt", "w") as f:
-        for num in number_indexes:
-            f.write(schematic[num.line_idx][num.start_idx:num.end_idx] + "\n")
 
     # decide if numbers are adjacent to a symbol and add them to tally
     def is_in_range(x: int, y: int) -> bool:
