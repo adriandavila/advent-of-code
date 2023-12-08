@@ -7,6 +7,8 @@ class Scratchcard:
     card_numbers: list[int]
 
 def scratchcards(scratchcards: list[Scratchcard]) -> int:
+    """
+    # PART 1
     score: int = 0
 
     for card in scratchcards:
@@ -18,6 +20,18 @@ def scratchcards(scratchcards: list[Scratchcard]) -> int:
         score += card_result
     
     return score
+    """
+
+    # PART 2
+    num_cards = [1] * len(scratchcards)
+
+    for i, card in enumerate(scratchcards):
+        matching_numbers = sum([1 for n in card.card_numbers if n in card.winning_numbers])
+        for card_idx in range(i + 1, i + 1 + matching_numbers):
+            num_cards[card_idx] += num_cards[i]
+
+
+    return sum(num_cards)
 
 
 def runner(input: Path) -> int:
