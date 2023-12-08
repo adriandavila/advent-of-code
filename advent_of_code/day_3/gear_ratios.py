@@ -67,6 +67,8 @@ def gear_ratios(schematic: list[str]) -> int:
     for num in number_indexes:
         if is_adjacent_to_symbol(num):
             acc += int(schematic[num.line_idx][num.start_idx:num.end_idx])
+    
+    return acc
 
     """
     # PART 2 SOLUTION
