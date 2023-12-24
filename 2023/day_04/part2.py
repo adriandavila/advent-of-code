@@ -7,22 +7,6 @@ class Scratchcard:
     card_numbers: list[int]
 
 def scratchcards(scratchcards: list[Scratchcard]) -> int:
-    """
-    # PART 1
-    score: int = 0
-
-    for card in scratchcards:
-        card_result: int = 0
-        for n in card.card_numbers:
-            if n in card.winning_numbers:
-                card_result = card_result * 2 if card_result > 0 else 1
-        
-        score += card_result
-    
-    return score
-    """
-
-    # PART 2
     num_cards = [1] * len(scratchcards)
 
     for i, card in enumerate(scratchcards):

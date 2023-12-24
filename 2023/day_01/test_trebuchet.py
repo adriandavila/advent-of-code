@@ -1,7 +1,7 @@
 
 from common import get_test_dir
-from part1 import runner as trebuchet_p1
-from part2 import runner as trebuchet_p2
+from day_01.part1 import runner as trebuchet_p1
+from day_01.part2 import runner as trebuchet_p2
 
 test_dir = get_test_dir(__file__)
 
