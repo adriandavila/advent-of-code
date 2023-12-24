@@ -1,9 +1,9 @@
-from common import get_test_dir
+from common import get_input_dir
 
 from day_04.part1 import runner as scratchcards_p1
 from day_04.part2 import runner as scratchcards_p2
 
-test_dir = get_test_dir(__file__)
+test_dir = get_input_dir(__file__)
 
 def test_scratchcards_part1():
     assert scratchcards_p1(test_dir / "sample.txt") == 13
