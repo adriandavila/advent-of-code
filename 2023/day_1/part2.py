@@ -1,24 +1,6 @@
 from pathlib import Path
-from typing import Literal
 
 def process_line(line: str) -> int:
-    calibration_value = 0
-    # Find the first number
-    for ch in line:
-        if ch.isnumeric():
-            calibration_value = int(ch) * 10
-            break
-    # Find the second number
-    for ch in reversed(line):
-        if ch.isnumeric():
-            calibration_value += int(ch)
-            break
-
-    return calibration_value
-
-
-
-def process_line_v2(line: str) -> int:
     valid_entries: dict[str, int] = {
         "one": 1,
         "two": 2,
@@ -70,21 +52,18 @@ def process_line_v2(line: str) -> int:
 
     return calibration_value
 
-def trebuchet(lines: list[str], version: Literal["v1"] | Literal["v2"] = "v1") -> int:
+def trebuchet(lines: list[str]) -> int:
     acc: int = 0
     for line in lines:
-        if version == "v1":
-            acc += process_line(line)
-        elif version == "v2":
-            acc += process_line_v2(line)
+        acc += process_line(line)
 
     return acc
 
 
-def runner(input: Path, version: Literal["v1"] | Literal["v2"] = "v1") -> int:
+def runner(input: Path) -> int:
     lines: list[str] = []
 
     with input.open("r") as file:
         lines = [l.rstrip() for l in file]
     
-    return trebuchet(lines, version)
+    return trebuchet(lines)
