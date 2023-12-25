@@ -1,4 +1,4 @@
-from common import get_input_dir
+from common.utils import get_input_dir
 
 from day_04.part1 import runner as scratchcards_p1
 from day_04.part2 import runner as scratchcards_p2

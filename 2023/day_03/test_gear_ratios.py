@@ -1,4 +1,4 @@
-from common import get_input_dir
+from common.utils import get_input_dir
 
 from day_03.part1 import runner as gear_ratio_p1
 from day_03.part2 import runner as gear_ratio_p2

@@ -1,5 +1,5 @@
 
-from common import get_input_dir
+from common.utils import get_input_dir
 from day_01.part1 import runner as trebuchet_p1
 from day_01.part2 import runner as trebuchet_p2
 
